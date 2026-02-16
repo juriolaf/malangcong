@@ -3,7 +3,7 @@
 // =====================
 
 document.addEventListener("DOMContentLoaded", () => {
-
+console.log("script.js loaded ✅");
 const GALLERY_KEY = "malangcong_gallery_v1";
 const GUEST_KEY = "malangcong_guestbook_v1";
 
