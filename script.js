@@ -95,64 +95,6 @@ function readFileAsDataURL(file) {
 renderGallery();
 
 // =====================
-// 2) 방명록
-// =====================
-const guestForm = document.getElementById("guestForm");
-const guestName = document.getElementById("guestName");
-const guestMsg = document.getElementById("guestMsg");
-const guestList = document.getElementById("guestList");
-const guestCount = document.getElementById("guestCount");
-const clearGuestBtn = document.getElementById("clearGuestBtn");
-
-function renderGuestbook() {
-  if (!guestList) return;
-  const items = loadJSON(GUEST_KEY, []);
-  guestCount.textContent = String(items.length);
-  guestList.innerHTML = "";
-
-  if (items.length === 0) {
-    guestList.innerHTML = `<li class="small-muted">아직 한마디가 없어요. 첫 글 남겨줘 🐾</li>`;
-    return;
-  }
-
-  for (const item of items) {
-    const li = document.createElement("li");
-    li.className = "guest-item";
-    li.innerHTML = `
-      <div class="guest-top">
-        <b>${escapeHtml(item.name)}</b>
-        <time>${new Date(item.createdAt).toLocaleString("ko-KR")}</time>
-      </div>
-      <p>${escapeHtml(item.msg)}</p>
-    `;
-    guestList.appendChild(li);
-  }
-}
-
-guestForm?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const name = guestName.value.trim();
-  const msg = guestMsg.value.trim();
-  if (!name || !msg) return;
-
-  const items = loadJSON(GUEST_KEY, []);
-  items.unshift({ name, msg, createdAt: Date.now() });
-  saveJSON(GUEST_KEY, items);
-
-  guestForm.reset();
-  renderGuestbook();
-});
-
-clearGuestBtn?.addEventListener("click", () => {
-  if (!confirm("방명록을 비울까?")) return;
-  localStorage.removeItem(GUEST_KEY);
-  renderGuestbook();
-});
-
-renderGuestbook();
-
-
-// =====================
 // 슬라이더 갤러리 (관리자는 폴더에 사진 넣기)
 // =====================
 const slides = [
