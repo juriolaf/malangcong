@@ -1,6 +1,9 @@
 // =====================
 // 저장 키
 // =====================
+
+document.addEventListener("DOMContentLoaded", () => {
+
 const GALLERY_KEY = "malangcong_gallery_v1";
 const GUEST_KEY = "malangcong_guestbook_v1";
 
@@ -137,3 +140,4 @@ window.addEventListener("keydown", (e) => {
 });
 
 if (slides.length > 0) renderSlide(0);
+});
