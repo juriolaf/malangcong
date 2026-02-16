@@ -86,7 +86,8 @@
       <ul id="guestList" class="guest-list"></ul>
     </section>
   </div>
-
+  
+<script src="script.js"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
   import { getFirestore, collection, addDoc, getDocs, query, orderBy }
@@ -112,7 +113,6 @@
   async function loadComments() {
     const q = query(collection(db, "guestbook"), orderBy("createdAt", "desc"));
     const snap = await getDocs(q);
-
     list.innerHTML = "";
     count.textContent = snap.size;
 
@@ -121,31 +121,25 @@
       const li = document.createElement("li");
       li.className = "guest-item";
       li.innerHTML = `
-        <div class="guest-top">
-          <b>${data.name}</b>
-        </div>
+        <div class="guest-top"><b>${data.name}</b></div>
         <p>${data.msg}</p>
       `;
       list.appendChild(li);
     });
   }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("guestName").value.trim();
+      const msg = document.getElementById("guestMsg").value.trim();
+      if (!name || !msg) return;
 
-    const name = document.getElementById("guestName").value.trim();
-    const msg = document.getElementById("guestMsg").value.trim();
-    if (!name || !msg) return;
-
-    await addDoc(collection(db, "guestbook"), {
-      name,
-      msg,
-      createdAt: Date.now()
+      await addDoc(collection(db, "guestbook"), { name, msg, createdAt: Date.now() });
+      form.reset();
+      loadComments();
     });
-
-    form.reset();
-    loadComments();
-  });
+  }
 
   loadComments();
 </script>
