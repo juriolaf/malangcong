@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>malangcong0.0 fan page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <!-- 헤더 -->
+    <div class="badge">@malangcong0.0 팬카페</div>
+
+    <h1>말랑콩떡이 🐶</h1>
+    <p>우리집 가나디 콩떡을 소개합니다</p>
+
+    <!-- 메인 이미지(배경 방식) -->
+    <div class="hero-image"></div>
+
+    <!-- 기본 정보 -->
+    <div class="card">
+      <h2 class="h2">기본 정보</h2>
+      <div class="table">
+        <div class="row">
+          <div class="key">생년월일</div><div class="val">2022.06.16</div>
+        </div>
+        <div class="row">
+          <div class="key">성별</div><div class="val">남자..였으나..중성</div>
+        </div>
+        <div class="row">
+          <div class="key">종</div><div class="val">말티푸 (엄마는 말티푸 확실, 아빠는 몰라요)</div>
+        </div>
+        <div class="row">
+          <div class="key">몸무게</div><div class="val">5.1kg</div>
+        </div>
+        <div class="row">
+          <div class="key">특징</div>
+          <div class="val">간식이라면 주인도 바꿀 기세, 실외배변이라 1일 2산책, 누나 좋아요</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 한 줄 카드 -->
+<div class="card feature-card">
+  <div class="ribbon">콩떡 TMI</div>
+  <p><b>오늘의 콩떡 :</b> “샤워?” 이 단어에 자동 반응함</p>
+</div>
+
+
+    <!-- 갤러리 -->
+    <section class="section" id="gallery">
+      <h2 class="section-title">콩떡이의 귀여움 모먼트 ✨</h2>
+      <p class="section-desc">좌우로 넘겨보세요. (키보드 ← → 도 됨)</p>
+
+      <div class="slider" aria-label="콩떡 갤러리">
+        <button class="nav prev" type="button" aria-label="이전 사진">←</button>
+
+        <div class="frame">
+          <img id="slideImg" alt="콩떡이 사진" />
+          <div id="slideCap" class="caption"></div>
+        </div>
+
+        <button class="nav next" type="button" aria-label="다음 사진">→</button>
+      </div>
+
+      <div id="dots" class="dots" aria-label="슬라이드 페이지네이션"></div>
+    </section>
+
+    <!-- 방명록 -->
+    <section class="section" id="guestbook">
+      <h2 class="section-title">콩떡이에게 한마디 📝</h2>
+      <p class="section-desc">여기도 로컬 저장! (나중에 서버 붙이면 진짜 방명록 가능)</p>
+
+      <form id="guestForm" class="guest-form">
+        <input id="guestName" type="text" placeholder="닉네임 (예: 콩떡이사랑단)" maxlength="20" required />
+        <textarea id="guestMsg" placeholder="콩떡아 오늘도 귀여워서 유죄…" maxlength="140" rows="3" required></textarea>
+        <button class="btn" type="submit">등록</button>
+      </form>
+
+      <div class="guest-head">
+        <span class="small-muted">총 <b id="guestCount">0</b>개</span>
+        <button id="clearGuestBtn" class="btn btn-ghost" type="button">방명록 비우기</button>
+      </div>
+
+      <ul id="guestList" class="guest-list"></ul>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
