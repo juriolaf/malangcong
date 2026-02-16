@@ -70,7 +70,7 @@
     <!-- 방명록 -->
     <section class="section" id="guestbook">
       <h2 class="section-title">콩떡이에게 한마디 📝</h2>
-      <p class="section-desc">여기도 로컬 저장! (나중에 서버 붙이면 진짜 방명록 가능)</p>
+      <p class="section-desc">콩떡이는 사람말도 알아듣는다멍!</p>
 
       <form id="guestForm" class="guest-form">
         <input id="guestName" type="text" placeholder="닉네임 (예: 콩떡이사랑단)" maxlength="20" required />
@@ -86,7 +86,7 @@
       <ul id="guestList" class="guest-list"></ul>
     </section>
   </div>
-<script src="script.js"></script>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
   import { getFirestore, collection, addDoc, getDocs, query, orderBy }
