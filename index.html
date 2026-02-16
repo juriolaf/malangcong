@@ -87,6 +87,67 @@
     </section>
   </div>
 
-  <script src="script.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy }
+    from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyB3h8X9JV32X1DMtIpkQIBgRCZsBE6i6jw",
+    authDomain: "malangcong.firebaseapp.com",
+    projectId: "malangcong",
+    storageBucket: "malangcong.firebasestorage.app",
+    messagingSenderId: "910902660491",
+    appId: "1:910902660491:web:011c1fbb2d245212b8f38e",
+    measurementId: "G-D94V6SKNLG"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const form = document.getElementById("guestForm");
+  const list = document.getElementById("guestList");
+  const count = document.getElementById("guestCount");
+
+  async function loadComments() {
+    const q = query(collection(db, "guestbook"), orderBy("createdAt", "desc"));
+    const snap = await getDocs(q);
+
+    list.innerHTML = "";
+    count.textContent = snap.size;
+
+    snap.forEach(doc => {
+      const data = doc.data();
+      const li = document.createElement("li");
+      li.className = "guest-item";
+      li.innerHTML = `
+        <div class="guest-top">
+          <b>${data.name}</b>
+        </div>
+        <p>${data.msg}</p>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("guestName").value.trim();
+    const msg = document.getElementById("guestMsg").value.trim();
+    if (!name || !msg) return;
+
+    await addDoc(collection(db, "guestbook"), {
+      name,
+      msg,
+      createdAt: Date.now()
+    });
+
+    form.reset();
+    loadComments();
+  });
+
+  loadComments();
+</script>
 </body>
 </html>
